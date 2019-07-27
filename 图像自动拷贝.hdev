@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.1" halcon_version="12.0">
+<procedure name="main">
+<interface/>
+<body>
+<l>ImageRoot:='E:/单晶组件' </l>
+<l>ImgPath:='D:/Image/A/'</l>
+<l>dev_set_check ('~give_error')</l>
+<l>list_files (ImageRoot, 'directories', Dirs_AR)</l>
+<l>Files_AR := []</l>
+<c></c>
+<l>for Index := 0 to |Dirs_AR| - 1 by 1</l>
+<l>    idir := Dirs_AR[Index]</l>
+<l>    Files_AR := [Files_AR, idir]  </l>
+<l>endfor</l>
+<c></c>
+<c>*遍历每个文件夹</c>
+<l>for findex := 0 to |Files_AR| - 1 by 1</l>
+<c>    *Process the border image first</c>
+<l>    filefolder := Files_AR[findex]</l>
+<c>    </c>
+<c>    * 分割字符串</c>
+<l>    ifilename := Files_AR[findex]</l>
+<l>    tuple_split(ifilename,'\\',strar)</l>
+<l>    tuple_length (strar, Length)</l>
+<l>    BarCode:=strar[Length-1] </l>
+<c>    </c>
+<c>    </c>
+<l>    A1H:=filefolder+BarCode+'_A1H.JPG'</l>
+<l>    A2H:=filefolder+BarCode+'_A2H.JPG'</l>
+<l>    A3H:=filefolder+BarCode+'_A3H.JPG'</l>
+<l>    A4H:=filefolder+BarCode+'_A4H.JPG' </l>
+<l>    read_image (ImageA1H,  A1H)</l>
+<l>    read_image (ImageA2H,  A2H)</l>
+<l>    read_image (ImageA3H,  A3H)</l>
+<l>    read_image (ImageA4H,  A4H)</l>
+<l>    write_image (ImageA1H, 'jpg', 0, ImgPath+'/'+BarCode+'_A1H')</l>
+<l>    write_image (ImageA2H, 'jpg', 0, ImgPath+'/'+BarCode+'_A2H')</l>
+<l>    write_image (ImageA3H, 'jpg', 0, ImgPath+'/'+BarCode+'_A3H')</l>
+<l>    write_image (ImageA4H, 'jpg', 0, ImgPath+'/'+BarCode+'_A4H')</l>
+<l>    wait_seconds (2)</l>
+<c>    </c>
+<c>    </c>
+<l>    B1H:=filefolder+BarCode+'_B1H.JPG'</l>
+<l>    B2H:=filefolder+BarCode+'_B2H.JPG'</l>
+<l>    B3H:=filefolder+BarCode+'_B3H.JPG'</l>
+<l>    B4H:=filefolder+BarCode+'_B4H.JPG' </l>
+<l>    read_image (ImageB1H,  B1H)</l>
+<l>    read_image (ImageB2H,  B2H)</l>
+<l>    read_image (ImageB3H,  B3H)</l>
+<l>    read_image (ImageB4H,  B4H)</l>
+<l>    write_image (ImageB1H, 'jpg', 0, ImgPath+'/'+BarCode+'_B1H')</l>
+<l>    write_image (ImageB2H, 'jpg', 0, ImgPath+'/'+BarCode+'_B2H')</l>
+<l>    write_image (ImageB3H, 'jpg', 0, ImgPath+'/'+BarCode+'_B3H')</l>
+<l>    write_image (ImageB4H, 'jpg', 0, ImgPath+'/'+BarCode+'_B4H')</l>
+<l>    wait_seconds (2)</l>
+<c>    </c>
+<l>    C1H:=filefolder+BarCode+'_C1H.JPG'</l>
+<l>    C2H:=filefolder+BarCode+'_C2H.JPG'</l>
+<l>    C3H:=filefolder+BarCode+'_C3H.JPG'</l>
+<l>    C4H:=filefolder+BarCode+'_C4H.JPG' </l>
+<l>    read_image (ImageC1H,  C1H)</l>
+<l>    read_image (ImageC2H,  C2H)</l>
+<l>    read_image (ImageC3H,  C3H)</l>
+<l>    read_image (ImageC4H,  C4H)</l>
+<l>    write_image (ImageC1H, 'jpg', 0, ImgPath+'/'+BarCode+'_C1H')</l>
+<l>    write_image (ImageC2H, 'jpg', 0, ImgPath+'/'+BarCode+'_C2H')</l>
+<l>    write_image (ImageC3H, 'jpg', 0, ImgPath+'/'+BarCode+'_C3H')</l>
+<l>    write_image (ImageC4H, 'jpg', 0, ImgPath+'/'+BarCode+'_C4H')</l>
+<l>    wait_seconds (4)</l>
+<c>    </c>
+<c>  </c>
+<c>  </c>
+<l>*     stop ()</l>
+<l>endfor</l>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>

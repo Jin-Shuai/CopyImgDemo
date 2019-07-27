@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.1" halcon_version="12.0">
+<procedure name="main">
+<interface/>
+<body>
+<l>* ImageRoot:='E:/单晶组件' </l>
+<l>ImageRoot:='E:/深度学习推演'</l>
+<l>ImgPath:='D:/Image/A/'</l>
+<c></c>
+<c>* 单多张图像选择</c>
+<l>SingleDouble:=false</l>
+<c></c>
+<l>dev_set_check ('~give_error')</l>
+<l>list_files (ImageRoot, ['directories','files','follow_links'], Dirs_AR)</l>
+<c></c>
+<c></c>
+<c></c>
+<l>tuple_regexp_select (Dirs_AR, ['\\.(bmp|jpg)$','ignore_case'], Dirs_AR)</l>
+<l>for Index := 0 to |Dirs_AR| - 1 by 1</l>
+<l>    read_image (Image, Dirs_AR[Index])</l>
+<c>    * 分割字符串</c>
+<l>    ifilename := Dirs_AR[Index]</l>
+<l>    tuple_split(ifilename,['\\'],strar)</l>
+<l>    tuple_length (strar, Length)</l>
+<l>    BarCode2:=strar[Length-1] </l>
+<c>    </c>
+<c>    * 提取条码</c>
+<l>    tuple_split(BarCode2,['_'],BarCodestrar)</l>
+<l>    tuple_length (BarCodestrar, Length2)</l>
+<l>    BarCode:=BarCodestrar[Length2-2] </l>
+<c>    </c>
+<l>    filefolder:=ImageRoot+'/'</l>
+<c>    * 读取12张图像</c>
+<l>    A1H:=filefolder+BarCode+'_A1H.JPG'</l>
+<l>    A2H:=filefolder+BarCode+'_A2H.JPG'</l>
+<l>    A3H:=filefolder+BarCode+'_A3H.JPG'</l>
+<l>    A4H:=filefolder+BarCode+'_A4H.JPG' </l>
+<l>    read_image (ImageA1H,  A1H)</l>
+<l>    read_image (ImageA2H,  A2H)</l>
+<l>    read_image (ImageA3H,  A3H)</l>
+<l>    read_image (ImageA4H,  A4H)</l>
+<c>    </c>
+<l>    make_dir (ImgPath+BarCode)</l>
+<c>    </c>
+<l>*     stop ()</l>
+<l>    write_image (ImageA1H, 'jpg', 0, ImgPath+BarCode+'/'+BarCode+'_A1H')</l>
+<l>    write_image (ImageA2H, 'jpg', 0, ImgPath+BarCode+'/'+BarCode+'_A2H')</l>
+<l>    write_image (ImageA3H, 'jpg', 0, ImgPath+BarCode+'/'+BarCode+'_A3H')</l>
+<l>    write_image (ImageA4H, 'jpg', 0, ImgPath+BarCode+'/'+BarCode+'_A4H')</l>
+<c>    </c>
+<l>    delete_file (A1H)</l>
+<l>    delete_file (A2H)</l>
+<l>    delete_file (A3H)</l>
+<l>    delete_file (A4H)       </l>
+<l>*     wait_seconds (1)</l>
+<c>    </c>
+<c>    </c>
+<l>    B1H:=filefolder+BarCode+'_B1H.JPG'</l>
+<l>    B2H:=filefolder+BarCode+'_B2H.JPG'</l>
+<l>    B3H:=filefolder+BarCode+'_B3H.JPG'</l>
+<l>    B4H:=filefolder+BarCode+'_B4H.JPG' </l>
+<l>    read_image (ImageB1H,  B1H)</l>
+<l>    read_image (ImageB2H,  B2H)</l>
+<l>    read_image (ImageB3H,  B3H)</l>
+<l>    read_image (ImageB4H,  B4H)</l>
+<l>    write_image (ImageB1H, 'jpg', 0, ImgPath+BarCode+'/'+BarCode+'_B1H')</l>
+<l>    write_image (ImageB2H, 'jpg', 0, ImgPath+BarCode+'/'+BarCode+'_B2H')</l>
+<l>    write_image (ImageB3H, 'jpg', 0, ImgPath+BarCode+'/'+BarCode+'_B3H')</l>
+<l>    write_image (ImageB4H, 'jpg', 0, ImgPath+BarCode+'/'+BarCode+'_B4H')</l>
+<l>    delete_file (B1H)</l>
+<l>    delete_file (B2H)</l>
+<l>    delete_file (B3H)</l>
+<l>    delete_file (B4H)  </l>
+<c>    </c>
+<l>*     wait_seconds (1)</l>
+<c>    </c>
+<l>    C1H:=filefolder+BarCode+'_C1H.JPG'</l>
+<l>    C2H:=filefolder+BarCode+'_C2H.JPG'</l>
+<l>    C3H:=filefolder+BarCode+'_C3H.JPG'</l>
+<l>    C4H:=filefolder+BarCode+'_C4H.JPG' </l>
+<l>    read_image (ImageC1H,  C1H)</l>
+<l>    read_image (ImageC2H,  C2H)</l>
+<l>    read_image (ImageC3H,  C3H)</l>
+<l>    read_image (ImageC4H,  C4H)</l>
+<l>    write_image (ImageC1H, 'jpg', 0, ImgPath+BarCode+'/'+BarCode+'_C1H')</l>
+<l>    write_image (ImageC2H, 'jpg', 0, ImgPath+BarCode+'/'+BarCode+'_C2H')</l>
+<l>    write_image (ImageC3H, 'jpg', 0, ImgPath+BarCode+'/'+BarCode+'_C3H')</l>
+<l>    write_image (ImageC4H, 'jpg', 0, ImgPath+BarCode+'/'+BarCode+'_C4H')</l>
+<l>    delete_file (C1H)</l>
+<l>    delete_file (C2H)</l>
+<l>    delete_file (C3H)</l>
+<l>    delete_file (C4H)  </l>
+<l>*     wait_seconds (1)</l>
+<c>    </c>
+<c>    </c>
+<c>    </c>
+<c>    </c>
+<l>    break</l>
+<l>endfor  </l>
+<c></c>
+<c></c>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>
